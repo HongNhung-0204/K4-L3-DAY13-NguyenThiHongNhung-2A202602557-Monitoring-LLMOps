@@ -1,0 +1,25 @@
+Langfuse project: day13-k4-l3b-02557
+Workload: scripts/load_test.py --concurrency 5
+Verified using the Langfuse Observations API v2.
+Requests with correlated trace IDs: 10
+
+01. correlation_id=req-b9586efc trace_id=9d3a0702c9470039e2e86fdb29525376 v1
+    https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/9d3a0702c9470039e2e86fdb29525376
+02. correlation_id=req-960aea1b trace_id=a0e0726ebefce4c365737f9e52779a87 v1
+    https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/a0e0726ebefce4c365737f9e52779a87
+03. correlation_id=req-34373c9d trace_id=99078beb2bf4043d13b233c35fdc2916 v1
+    https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/99078beb2bf4043d13b233c35fdc2916
+04. correlation_id=req-d78537bc trace_id=3276843799703621044a89fd1586ea81 v1
+    https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/3276843799703621044a89fd1586ea81
+05. correlation_id=req-2048f913 trace_id=a284cfcd361b9eb14d1fd92db83e8a9e v1
+    https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/a284cfcd361b9eb14d1fd92db83e8a9e
+06. correlation_id=req-891c0f4b trace_id=2db2cc205db104d53203a0607e8428d2 v1
+    https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/2db2cc205db104d53203a0607e8428d2
+07. correlation_id=req-4a1be666 trace_id=15ef3477c4ef7c2177d0f34710df37bb v1
+    https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/15ef3477c4ef7c2177d0f34710df37bb
+08. correlation_id=req-ef23e2cf trace_id=19a0296a696e33ed7310a7b5de44fcb4 v1
+    https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/19a0296a696e33ed7310a7b5de44fcb4
+09. correlation_id=req-fe7a732b trace_id=32ff565bdf0a83e5cb288f865c7f4ba0 v1
+    https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/32ff565bdf0a83e5cb288f865c7f4ba0
+10. correlation_id=req-e747a017 trace_id=049d1d3c1846d7f9f7caa9fe7859cb46 v1
+    https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/049d1d3c1846d7f9f7caa9fe7859cb46

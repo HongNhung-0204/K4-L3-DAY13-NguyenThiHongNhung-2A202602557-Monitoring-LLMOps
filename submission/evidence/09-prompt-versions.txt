@@ -1,0 +1,6 @@
+Langfuse project: day13-k4-l3b-02557
+Prompt: day13-chat (text)
+
+label=baseline -> version=1; current labels=baseline, production; variables=docs, feature, message
+label=candidate -> version=2; current labels=candidate, latest; variables=docs, feature, message
+label=production -> version=1; current labels=baseline, production; variables=docs, feature, message

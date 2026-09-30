@@ -1,0 +1,9 @@
+CP3 sanitized log evidence
+
+Selected correlation_id: req-b101ea1f
+Feature: monitoring
+
+2026-09-30T05:44:40.317222Z event=request_received correlation_id=req-b101ea1f feature=monitoring
+2026-09-30T05:44:42.979636Z event=response_sent correlation_id=req-b101ea1f feature=monitoring latency_ms=2653 ttft_ms=50 trace_id=d4ca0fcf36658f98969e1ce213cab092 tool_name=retrieval tool_success=true
+
+No message, response, user ID, session ID, or payload fields are included.

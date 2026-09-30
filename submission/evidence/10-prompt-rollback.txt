@@ -1,0 +1,6 @@
+Project: day13-k4-l3b-02557
+Prompt: day13-chat
+Initial state: production -> v1; baseline request used v1.
+Promote: production -> v2; production trace=67b36613e10ef1c74a0739925b8d57b1 (correlation_id=req-c0200003).
+Rollback verified: production -> v1 after promote.
+Current label state is also recorded in 09-prompt-versions.txt.

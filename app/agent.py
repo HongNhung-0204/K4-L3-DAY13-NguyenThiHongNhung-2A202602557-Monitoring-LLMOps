@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from . import metrics
 from .mock_llm import FakeLLM
 from .mock_rag import retrieve
-from .pii import hash_user_id, summarize_text
+from .pii import hash_user_id, scrub_text, summarize_text
 from .prompt_management import resolve_prompt
 from .tracing import get_langfuse_client, observe, propagate_attributes, tracing_enabled
 
@@ -21,6 +21,7 @@ class AgentResult:
     tokens_out: int
     cost_usd: float
     quality_score: float
+    trace_id: str | None
 
 
 class LabAgent:
@@ -40,7 +41,7 @@ class LabAgent:
         langfuse_client = get_langfuse_client()
         with propagate_attributes(
             user_id=hash_user_id(user_id),
-            session_id=session_id,
+            session_id=scrub_text(session_id),
             tags=["lab", feature, self.model],
             trace_name="day13-agent-request",
             environment=os.getenv("APP_ENV", "dev"),
@@ -51,7 +52,14 @@ class LabAgent:
             },
         ):
             started = time.perf_counter()
-            docs = retrieve(message)
+            with langfuse_client.start_as_current_observation(
+                name="retrieval",
+                as_type="retriever",
+                input={"query_preview": summarize_text(message)},
+            ) as retrieval_observation:
+                docs = retrieve(message)
+                retrieval_observation.update(output={"doc_count": len(docs)})
+
             prompt = resolve_prompt(
                 langfuse_client,
                 feature=feature,
@@ -71,11 +79,35 @@ class LabAgent:
                 },
                 version=prompt.version,
             )
-            # TODO (CP2): instrument retrieve() and FakeLLM.generate() as child
-            # observations. The nested generation must receive prompt, usage and cost.
             with propagate_attributes(prompt=prompt.managed_prompt):
-                response = self.llm.generate(prompt.text)
+                with langfuse_client.start_as_current_observation(
+                    name="llm-generation",
+                    as_type="generation",
+                    model=self.model,
+                    input={"prompt_preview": summarize_text(prompt.text)},
+                    prompt=prompt.managed_prompt,
+                    metadata={
+                        "prompt_name": prompt.name,
+                        "prompt_label": prompt.label,
+                        "prompt_version": prompt.version,
+                        "prompt_source": prompt.source,
+                    },
+                ) as generation_observation:
+                    response = self.llm.generate(prompt.text)
+                    input_cost = (response.usage.input_tokens / 1_000_000) * 3
+                    output_cost = (response.usage.output_tokens / 1_000_000) * 15
+                    generation_observation.update(
+                        output={"answer_preview": summarize_text(response.text)},
+                        usage_details={
+                            "input": response.usage.input_tokens,
+                            "output": response.usage.output_tokens,
+                        },
+                        cost_details={"input": input_cost, "output": output_cost},
+                        prompt=prompt.managed_prompt,
+                    )
             quality_score = self._heuristic_quality(message, response.text, docs)
+            get_current_trace_id = getattr(langfuse_client, "get_current_trace_id", None)
+            trace_id = get_current_trace_id() if callable(get_current_trace_id) else None
             latency_ms = int((time.perf_counter() - started) * 1000)
             cost_usd = self._estimate_cost(response.usage.input_tokens, response.usage.output_tokens)
 
@@ -96,6 +128,7 @@ class LabAgent:
             tokens_out=response.usage.output_tokens,
             cost_usd=cost_usd,
             quality_score=quality_score,
+            trace_id=trace_id,
         )
 
     def _estimate_cost(self, tokens_in: int, tokens_out: int) -> float:

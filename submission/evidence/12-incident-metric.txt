@@ -1,0 +1,30 @@
+CP3 incident metric snapshot (reconstructed from data/logs.jsonl using the dashboard's 60-minute calculation)
+
+Challenge: day13-k4-l3b-monitoring-llmops-v1 (K4)
+Incident feature: monitoring
+Challenge latency threshold: 2000 ms
+Snapshot window: 2026-09-30T04:44:54Z through 2026-09-30T05:44:54Z
+Dashboard record count in window: 11 (5 request_received + 5 response_sent + incident control event)
+
+Latency panel:
+  P50: 2653 ms
+  P95: 2654 ms
+  P99: 2654 ms
+  TTFT P95: 50 ms
+  General dashboard/SLO target: <= 3000 ms
+
+Client-side durations printed by scripts/load_test.py for the same concurrent batch:
+  req-b101ea1f: 7991.5 ms
+  req-ba87ee7f: 13304.6 ms
+  req-4007b63e: 13304.8 ms
+  req-b54d931a: 13307.2 ms
+  req-4ff1905e: 13307.0 ms
+
+Interpretation: the observed P95 exceeded this challenge's 2000 ms threshold. It remained below
+the general 3000 ms SLO, which explains why the previous 3000 ms alert condition was too coarse
+for this incident. The client-side durations were much higher than the response_sent metric because
+the synchronous agent pipeline ran directly inside an async route and serialized concurrent work.
+The snapshot contains no query, prompt, response, or user identifiers.
+
+Source: dashboard_app.build_dashboard_data(now=2026-09-30T05:44:54Z), replayed against the
+sanitized JSONL records. The default live dashboard window has since rolled forward.

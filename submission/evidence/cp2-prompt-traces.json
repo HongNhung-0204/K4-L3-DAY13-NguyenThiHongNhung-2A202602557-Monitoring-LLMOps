@@ -1,0 +1,239 @@
+{
+  "project": "day13-k4-l3b-02557",
+  "prompt": "day13-chat",
+  "same_input": "Explain how a request ID connects application logs and an LLM trace.",
+  "production_after_rollback": 1,
+  "requests": [
+    {
+      "stage": "baseline",
+      "correlation_id": "req-c0200001",
+      "trace_id": "936374d44cad57d6051a957350b6e29e",
+      "label": "baseline",
+      "expected_version": 1,
+      "trace_url": "https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/936374d44cad57d6051a957350b6e29e",
+      "observations": [
+        {
+          "id": "7814a47997bb5c17",
+          "trace_id": "936374d44cad57d6051a957350b6e29e",
+          "parent_observation_id": "9eebc3e44824a72d",
+          "name": "llm-generation",
+          "type": "GENERATION",
+          "is_root_observation": false,
+          "model": "claude-sonnet-4-5",
+          "usage_details": {
+            "input": 37,
+            "output": 135,
+            "total": 172
+          },
+          "cost_details": {
+            "input": 0.000111,
+            "output": 0.002025,
+            "total": 0.002136
+          },
+          "total_cost": 0.002136,
+          "prompt_id": "7a0c4a40-970b-48a1-9619-29f26f4af856",
+          "prompt_name": "day13-chat",
+          "prompt_version": 1,
+          "metadata": {
+            "correlation_id": "req-c0200001",
+            "prompt_name": "day13-chat",
+            "prompt_label": "baseline",
+            "prompt_version": 1,
+            "prompt_source": "langfuse",
+            "feature": "qa",
+            "model": "claude-sonnet-4-5"
+          }
+        },
+        {
+          "id": "1120db82a020bf24",
+          "trace_id": "936374d44cad57d6051a957350b6e29e",
+          "parent_observation_id": "9eebc3e44824a72d",
+          "name": "retrieval",
+          "type": "RETRIEVER",
+          "is_root_observation": false,
+          "usage_details": {},
+          "cost_details": {},
+          "metadata": {
+            "correlation_id": "req-c0200001",
+            "feature": "qa",
+            "model": "claude-sonnet-4-5"
+          }
+        },
+        {
+          "id": "9eebc3e44824a72d",
+          "trace_id": "936374d44cad57d6051a957350b6e29e",
+          "name": "lab-agent-run",
+          "type": "AGENT",
+          "is_root_observation": true,
+          "version": "1",
+          "usage_details": {},
+          "cost_details": {},
+          "metadata": {
+            "correlation_id": "req-c0200001",
+            "prompt_name": "day13-chat",
+            "prompt_label": "baseline",
+            "prompt_version": 1,
+            "prompt_source": "langfuse",
+            "feature": "qa",
+            "model": "claude-sonnet-4-5",
+            "doc_count": 1
+          }
+        }
+      ]
+    },
+    {
+      "stage": "candidate",
+      "correlation_id": "req-c0200002",
+      "trace_id": "f3af17941f7941783ac9d0f98e19336c",
+      "label": "candidate",
+      "expected_version": 2,
+      "trace_url": "https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/f3af17941f7941783ac9d0f98e19336c",
+      "observations": [
+        {
+          "id": "de6ad7dd401f5ac3",
+          "trace_id": "f3af17941f7941783ac9d0f98e19336c",
+          "parent_observation_id": "5359db612fc4c82b",
+          "name": "llm-generation",
+          "type": "GENERATION",
+          "is_root_observation": false,
+          "model": "claude-sonnet-4-5",
+          "usage_details": {
+            "input": 57,
+            "output": 131,
+            "total": 188
+          },
+          "cost_details": {
+            "input": 0.000171,
+            "output": 0.001965,
+            "total": 0.002136
+          },
+          "total_cost": 0.002136,
+          "prompt_id": "76b69403-826b-4594-bfba-ce6a5b3de1d5",
+          "prompt_name": "day13-chat",
+          "prompt_version": 2,
+          "metadata": {
+            "correlation_id": "req-c0200002",
+            "prompt_name": "day13-chat",
+            "prompt_label": "candidate",
+            "prompt_version": 2,
+            "prompt_source": "langfuse",
+            "feature": "qa",
+            "model": "claude-sonnet-4-5"
+          }
+        },
+        {
+          "id": "65dbd8efdebefd4a",
+          "trace_id": "f3af17941f7941783ac9d0f98e19336c",
+          "parent_observation_id": "5359db612fc4c82b",
+          "name": "retrieval",
+          "type": "RETRIEVER",
+          "is_root_observation": false,
+          "usage_details": {},
+          "cost_details": {},
+          "metadata": {
+            "correlation_id": "req-c0200002",
+            "feature": "qa",
+            "model": "claude-sonnet-4-5"
+          }
+        },
+        {
+          "id": "5359db612fc4c82b",
+          "trace_id": "f3af17941f7941783ac9d0f98e19336c",
+          "name": "lab-agent-run",
+          "type": "AGENT",
+          "is_root_observation": true,
+          "version": "2",
+          "usage_details": {},
+          "cost_details": {},
+          "metadata": {
+            "correlation_id": "req-c0200002",
+            "prompt_name": "day13-chat",
+            "prompt_label": "candidate",
+            "prompt_version": 2,
+            "prompt_source": "langfuse",
+            "feature": "qa",
+            "model": "claude-sonnet-4-5",
+            "doc_count": 1
+          }
+        }
+      ]
+    },
+    {
+      "stage": "production-promote",
+      "correlation_id": "req-c0200003",
+      "trace_id": "67b36613e10ef1c74a0739925b8d57b1",
+      "label": "production",
+      "expected_version": 2,
+      "trace_url": "https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/67b36613e10ef1c74a0739925b8d57b1",
+      "observations": [
+        {
+          "id": "dedaf6b419dc5b66",
+          "trace_id": "67b36613e10ef1c74a0739925b8d57b1",
+          "parent_observation_id": "ddf476b8991a7c00",
+          "name": "llm-generation",
+          "type": "GENERATION",
+          "is_root_observation": false,
+          "model": "claude-sonnet-4-5",
+          "usage_details": {
+            "input": 57,
+            "output": 170,
+            "total": 227
+          },
+          "cost_details": {
+            "input": 0.000171,
+            "output": 0.00255,
+            "total": 0.002721
+          },
+          "total_cost": 0.002721,
+          "prompt_id": "76b69403-826b-4594-bfba-ce6a5b3de1d5",
+          "prompt_name": "day13-chat",
+          "prompt_version": 2,
+          "metadata": {
+            "correlation_id": "req-c0200003",
+            "prompt_name": "day13-chat",
+            "prompt_label": "production",
+            "prompt_version": 2,
+            "prompt_source": "langfuse",
+            "feature": "qa",
+            "model": "claude-sonnet-4-5"
+          }
+        },
+        {
+          "id": "6917707f2ecbe191",
+          "trace_id": "67b36613e10ef1c74a0739925b8d57b1",
+          "parent_observation_id": "ddf476b8991a7c00",
+          "name": "retrieval",
+          "type": "RETRIEVER",
+          "is_root_observation": false,
+          "usage_details": {},
+          "cost_details": {},
+          "metadata": {
+            "correlation_id": "req-c0200003",
+            "feature": "qa",
+            "model": "claude-sonnet-4-5"
+          }
+        },
+        {
+          "id": "ddf476b8991a7c00",
+          "trace_id": "67b36613e10ef1c74a0739925b8d57b1",
+          "name": "lab-agent-run",
+          "type": "AGENT",
+          "is_root_observation": true,
+          "version": "2",
+          "usage_details": {},
+          "cost_details": {},
+          "metadata": {
+            "correlation_id": "req-c0200003",
+            "prompt_name": "day13-chat",
+            "prompt_label": "production",
+            "prompt_version": 2,
+            "prompt_source": "langfuse",
+            "feature": "qa",
+            "model": "claude-sonnet-4-5",
+            "doc_count": 1
+          }
+        }
+      ]
+    }
+  ]
+}

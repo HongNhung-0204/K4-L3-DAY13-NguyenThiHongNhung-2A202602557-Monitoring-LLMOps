@@ -1,0 +1,17 @@
+CP3 Langfuse Observations API v2 verification
+
+Project: day13-k4-l3b-02557
+Trace ID: d4ca0fcf36658f98969e1ce213cab092
+correlation_id: req-b101ea1f
+Feature: monitoring
+Trace URL: https://cloud.langfuse.com/project/cmuni9d4l0icpad0cclf2lb5b/traces/d4ca0fcf36658f98969e1ce213cab092
+
+Observation tree and durations:
+lab-agent-run [AGENT, root, observation_id=53212310c4cef18f] 2657 ms
+  |- retrieval [RETRIEVER, parent=53212310c4cef18f, observation_id=46dd12fae3e4c93f] 2501 ms
+  `- llm-generation [GENERATION, parent=53212310c4cef18f, observation_id=cf29f1898bc450f5] 151 ms
+
+Retrieval ran from 2026-09-30T05:44:40.325Z to 2026-09-30T05:44:42.826Z.
+Generation ran from 2026-09-30T05:44:42.827Z to 2026-09-30T05:44:42.978Z.
+The root and both child observations carried the same correlation_id. Prompt/input/output bodies
+were deliberately excluded from this evidence.

@@ -1,0 +1,10 @@
+Project: day13-k4-l3b-02557
+Trace ID: 3276843799703621044a89fd1586ea81
+correlation_id: req-d78537bc
+Observation: llm-generation [GENERATION]
+Model: claude-sonnet-4-5
+Prompt: day13-chat v1 (label=production; source=langfuse)
+Prompt ID: 7a0c4a40-970b-48a1-9619-29f26f4af856
+Tokens: input=39, output=91, total=130
+Cost USD: input=0.000117, output=0.001365, total=0.001482
+Input/output previews are intentionally omitted from this evidence file.

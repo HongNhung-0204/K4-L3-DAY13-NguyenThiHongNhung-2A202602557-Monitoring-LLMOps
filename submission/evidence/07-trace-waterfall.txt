@@ -1,0 +1,7 @@
+Project: day13-k4-l3b-02557
+Trace ID: 3276843799703621044a89fd1586ea81
+correlation_id: req-d78537bc
+
+lab-agent-run [AGENT, root, observation_id=84f1d8f14e6ef2e8]
+  |- retrieval [RETRIEVER, parent=84f1d8f14e6ef2e8, observation_id=bc325a1a5b89008d]
+  `- llm-generation [GENERATION, parent=84f1d8f14e6ef2e8, observation_id=4283b54a2cb24f0d]

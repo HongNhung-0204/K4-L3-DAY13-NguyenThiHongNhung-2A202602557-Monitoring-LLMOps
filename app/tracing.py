@@ -24,6 +24,17 @@ except ImportError:  # pragma: no cover - chỉ dùng khi chưa cài requirement
         def update_current_generation(self, **kwargs: Any) -> None:
             return None
 
+        def get_current_trace_id(self) -> None:
+            return None
+
+        @contextmanager
+        def start_as_current_observation(self, **kwargs: Any):
+            class _DummyObservation:
+                def update(self, **update_kwargs: Any) -> None:
+                    return None
+
+            yield _DummyObservation()
+
     def get_client():
         return _DummyClient()
 
